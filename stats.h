@@ -27,11 +27,11 @@
  *
  * @param min Minimum value from array
  * @param max Maximum value from array
- * @param mean Mean value of data items in the array
+ * @param mean Mean value of data items in array
  * @param median Median value of data items in the array
  *
  */
-void print_statistics(char min, char max, int mean, char median);
+void print_statistics(unsigned char min, unsigned char max, unsigned char mean, unsigned char median);
 
  /**
  * @brief Print array to terminal.
@@ -39,10 +39,10 @@ void print_statistics(char min, char max, int mean, char median);
  * This function takes a char pointer to an array as input.This will print elements in the array to terminal.
  *
  * @param *arrayPtr  Pointer to array
- * @param SIZE Size of array
+ * @param arraySize Size of array
  *
  */ 
-void print_array(char *arrayPtr);
+void print_array(unsigned char *arrayPtr, int arraySize);
 
 /**
  * @brief Find median value of data in array.
@@ -50,23 +50,23 @@ void print_array(char *arrayPtr);
  * This function take a char pointer to an array as input and output a char which is median value of data in array.
  *
  * @param *arrayPtr  Pointer to array
- * @param SIZE Size of array
+ * @param arraySize Size of array
  *
  * return Char which is median value
  */
-char find_median( char *arrayPtr, int SIZE);
+unsigned char find_median( unsigned char *arrayPtr, int arraySize);
 
 /**
- * @brief Find mean value of data in array.
+ * @brief Find median value of data in array.
  * 
  * This function take a char pointer to an array as input and output an interger which is mean value of data in array.
  * 
  * @param *arrayPtr  Pointer to array
- * @param SIZE Size of array
+ * @param arraySize Size of array
  * 
- * return Interger which is mean value 
+ * return Char which is mean value 
  */ 
-int find_mean( char *arrayPtr, int SIZE);
+unsigned char  find_mean( unsigned char *arrayPtr, int arraySize);
 
 /**
  * @brief Find maximun value of data in array.
@@ -74,11 +74,11 @@ int find_mean( char *arrayPtr, int SIZE);
  * This function take a char pointer to an array as input and output a char which is maximum value in array.
  *     
  * @param *arrayPtr  Pointer to array
- * @param SIZE Size of array
+ * @param arraySize Size of array
  *   
  * return Char which is maximum value 
  */
-char find_maximum( char *arrayPtr, int SIZE);
+unsigned char  find_maximum( unsigned char *arrayPtr, int arraySize);
 
 /**
  *  @brief Find minimum value of data in array.
@@ -86,11 +86,11 @@ char find_maximum( char *arrayPtr, int SIZE);
  *  This function take a char pointer to an array as input and output a char which is minimum value of in array.
  *      
  *  @param *arrayPtr  Pointer to array
- *  @param SIZE Size of array
+ *  @param arraySize Size of array
  *       
  *  return Char which is minimum value 
  */
-char find_minimum( char *arrayPtr, int SIZE);
+unsigned char find_minimum(unsigned  char *arrayPtr, int arraySize);
 
 /**
  *  @brief Sort element in array in descending order.
@@ -98,9 +98,9 @@ char find_minimum( char *arrayPtr, int SIZE);
  *  This function take a char pointer to an array as input.This sort elements in array in descending order.
  *     
  *  @param *arrayPtr  Pointer to array
- *  @param SIZE Size of array
+ *  @param arraySize Size of array
  *        
  */
-void sort_array( char *arrayPtr, int SIZE)
+void sort_array( unsigned char *arrayPtr, int arraySize);
 
 #endif /* __STATS_H__ */
