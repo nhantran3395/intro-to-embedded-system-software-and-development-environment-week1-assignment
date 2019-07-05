@@ -32,14 +32,14 @@ include sources.mk
 OBJECTS=$(SOURCES:.c=.o)
 DEPENDENCIES=$(SOURCES:.c=.d)
 
-BASENAME = c1m2
+BASENAME = final
 TARGET = $(BASENAME).out
 
 #General flags for both platforms
 CFLAGS = -Wall -Werror -g -O0 -std=c99 -MD
 CPPFLAGS = -E 
 LDFLAGS = -Wl,-Map=$(BASENAME).map
-
+OPTIONS = -DCOURSE1 -DVERBOSE
 
 #Platform Overrides
 PLATFORM = HOST
@@ -70,17 +70,17 @@ CFLAGS_ARCH = -mcpu=$(CPU) -mthumb -march=$(ARCH) -mfloat-abi=hard -mfpu=fpv4-sp
 endif
 
 #Build rule
-%.i:%.c
+%.i:src/%.c
 	$(CC) $(CPPFLAGS) $< $(CFLAGS) $(CFLAGS_ARCH) $(PLATFORM_TARGET) $(INCLUDES) -o $@
 
-%.asm:%.c
+%.asm:src/%.c
 	$(CC) -S $< $(CFLAGS) $(CFLAGS_ARCH) $(PLATFORM_TARGET) $(INCLUDES) -o $@
 
-%.o:%.c
-	$(CC) -c $< $(CFLAGS) $(CFLAGS_ARCH) $(PLATFORM_TARGET) $(INCLUDES) -o $@
+%.o:src/%.c
+	$(CC) -c $< $(CFLAGS) $(CFLAGS_ARCH) $(PLATFORM_TARGET) $(INCLUDES) $(OPTIONS) -o $@
 
 $(TARGET):$(OBJECTS)
-	        $(CC) $(OBJECTS) $(CFLAGS) $(CFLAGS_ARCH) $(LDFLAGS) $(LINKER_FILE) $(INCLUDES) -o $@
+	        $(CC) $(OBJECTS) $(CFLAGS) $(CFLAGS_ARCH) $(LDFLAGS) $(LINKER_FILE) $(INCLUDES) $(OPTIONS) -o $@
 		$(SIZE) -Btd $(TARGET) $(OBJECTS)
 		
 .PHONY: compile-all

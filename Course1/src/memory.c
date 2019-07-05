@@ -21,6 +21,8 @@
  *
  */
 #include "memory.h"
+#include "stdlib.h"
+#include "stdint.h"
 
 /***********************************************************
  Function Definitions
@@ -46,5 +48,73 @@ void set_all(char * ptr, char value, unsigned int size){
 
 void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
+}
+
+uint8_t *my_memcopy(uint8_t *src,uint8_t *dst,size_t length){
+	for(int count=0;count<length;count++){
+		*(dst+count) = *(src +count);
+	}
+	return dst;
+}
+
+uint8_t *my_memmove(uint8_t *src,uint8_t *dst,size_t length){
+	uint8_t *temp;
+	temp  = (uint8_t*)malloc(sizeof(uint8_t)*length);
+
+	/*Copy source data to temp*/
+	for (int count=0;count <length;count++){
+		*(temp+count) = *(src+count);
+	}
+
+	/*Copy temp to destination*/
+	for (int count=0;count <length;count++){
+		*(dst+count) = *(temp+count);
+	}
+
+	free((void*)temp);
+
+	return dst;
+}
+
+uint8_t *my_memset(uint8_t *src,size_t length,uint8_t value){
+	for(int count = 0;count < length;count++){
+		*(src+count) = value;
+	}
+
+	return src;
+}
+
+uint8_t *my_memzero(uint8_t *src,size_t length){
+	for(int count = 0;count < length;count++){
+		*(src+count) = 0;
+	}
+
+	return src;
+}
+
+uint8_t *my_reverse(uint8_t *src,size_t length){
+	uint8_t *temp;
+	temp = (uint8_t*)malloc(sizeof(uint8_t)*length);
+	
+	/*temp hold value of source memory region which all byte reversed */
+	for(int count = 0;count < length;count++){
+		*(temp+count) = *(src+length-1-count);
+	}
+
+	/*copy value of temp to source memory region*/
+	my_memcopy(temp,src,length);
+
+	free((void*)temp);
+	return src;
+}
+
+int32_t *reserve_words(size_t length){
+	int32_t *temp;
+	temp = (int32_t*)malloc(sizeof(int32_t)*length);
+	return temp;
+}
+
+void free_words(uint32_t *src){
+	free((void*)src);
 }
 

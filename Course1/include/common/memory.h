@@ -19,6 +19,10 @@
  * @date April 1 2017
  *
  */
+
+#include <stdlib.h>
+#include <stdint.h>
+
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
@@ -89,5 +93,91 @@ void set_all(char * ptr, char value, unsigned int size);
  * @return void.
  */
 void clear_all(char * ptr, unsigned int size);
+
+/**
+ * @brief Copy data from source memory region to destination memory region
+ *
+ * Given two byte pointers (source and destination) and a length of bytes, this will copy data from source memory region to destination memory region.
+ * Behavior if there is overlap of source and destination is undefined. Data corruption may occur.
+ *
+ * @param *src Pointer to source
+ * @param *dst Pointer to destination
+ * @param length Length of bytes to copy
+ *
+ * @return Pointer to destination
+ */ 
+uint8_t *my_memcopy(uint8_t *src,uint8_t *dst,size_t length);
+
+/**
+ * @brief Copy data from source memory region to destination memory region
+ *
+ * Given two byte pointer (source and destination) and a length of byte,this will copy data from source memory region to destination memory region.
+ * Overlap of source and destination is handled. Copy occur with no data corruption.
+ *
+ * @param *src Pointer to source
+ * @param *dst Pointer to destination
+ * @param length Length of bytes to copy
+ *
+ * @return Pointer to destination
+ */ 
+uint8_t *my_memmove(uint8_t *src,uint8_t *dst,size_t length);
+
+/**
+ * @brief Set given value to all bytes in memory region
+ *
+ * Given a pointer to a memory region, a length of bytes and value, this will set all bytes in memory region to given value.
+ *
+ * @param *src Pointer to memory region
+ * @param length Length of bytes to set value
+ *
+ * @return Pointer to memory region
+ */
+uint8_t *my_memset(uint8_t *src,size_t length,uint8_t value);
+
+/**
+ * @brief Set zero to all bytes in memory region
+ *
+ * Given a pointer to a memory region,a length of bytes, this will set all bytesin memory region to zero.
+ *
+ * @param *src Pointer to memory location
+ * @param length Length of byte to copy
+ *
+ * @return Pointer to source
+ */
+uint8_t *my_memzero(uint8_t *src,size_t length);
+
+/**
+ *  @brief Reverse order of all of the bytes in memory region
+ *   
+ *  Given a pointer to a memory region, a length of bytes, this will reverse theorder of all of the bytes in that memory region.
+ *     
+ *  @param *src Pointer to memory location
+ *  @param length Length of byte to copy
+ *        
+ *  @return Pointer to source
+ */
+uint8_t *my_reverse(uint8_t *src,size_t length);
+
+/**
+ * @brief Allocate a number of words in dynamic memory
+ *
+ * Given a number of words, this will allocate that number of words in dynamic memory
+ *
+ * @param length Number of words
+ *
+ * @return Pointer to allocated dynamic memory region
+ */
+int32_t *reserve_words(size_t length);
+
+/**
+ * @brief Free a dynamic memory region
+ *
+ * Given a pointer to a memory region,this will free that memory region.
+ *
+ * @param src Pointer to memory location
+ *
+ * return Void
+ */
+void free_words(uint32_t *src);
 
 #endif /* __MEMORY_H__ */

@@ -38,8 +38,12 @@ int8_t test_data1() {
     return TEST_ERROR;
   }
 
-  digits = my_itoa( num, ptr, BASE_16);   
+  digits = my_itoa( num, ptr, BASE_16);  
+  PRINTF("test my_itoa:%s\n",ptr);
+
   value = my_atoi( ptr, digits, BASE_16);
+  PRINTF("test my_atoi:%d\n",value);
+
   #ifdef VERBOSE
   PRINTF("  Initial number: %d\n", num);
   PRINTF("  Final Decimal number: %d\n", value);
@@ -68,7 +72,11 @@ int8_t test_data2() {
   }
 
   digits = my_itoa( num, ptr, BASE_10);
+  PRINTF("test my_itoa: %s\n",ptr);
+
   value = my_atoi( ptr, digits, BASE_10);
+  PRINTF("test my_atoi: %d\n",value);
+
   #ifdef VERBOSE
   PRINTF("  Initial Decimal number: %d\n", num);
   PRINTF("  Final Decimal number: %d\n", value);

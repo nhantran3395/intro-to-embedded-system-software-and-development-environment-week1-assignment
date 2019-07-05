@@ -41,7 +41,8 @@ void print_statistics(unsigned char min, unsigned char max, unsigned char mean, 
  * @param *arrayPtr  Pointer to array
  * @param arraySize Size of array
  *
- */ 
+ */
+
 void print_array(unsigned char *arrayPtr, int arraySize);
 
 /**
